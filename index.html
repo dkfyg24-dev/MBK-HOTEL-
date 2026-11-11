@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MBK HOTEL - Luxury Menu</title>
+    <title>MBK HOTEL</title>
     <style>
         :root {
             --gold: #e9b94d;
             --dark: #07080b;
-            --card-bg: rgba(20, 22, 30, 0.85);
+            --card-bg: rgba(20, 22, 30, 0.9);
             --white: #ffffff;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -18,22 +18,16 @@
             font-family: Arial, sans-serif;
             min-height: 100vh;
             padding-bottom: 90px;
-            position: relative;
         }
 
-        /* Floating Background Emojis */
+        /* Flying Emojis */
         .emoji-bg {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 0;
-            overflow: hidden;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 0; overflow: hidden;
         }
         .emoji-item {
-            position: absolute;
-            font-size: 24px;
-            opacity: 0.22;
-            animation: floatUp 12s linear infinite;
+            position: absolute; font-size: 22px; opacity: 0.2;
+            animation: floatUp 10s linear infinite;
         }
         @keyframes floatUp {
             0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
@@ -43,117 +37,64 @@
         }
 
         .top-bar {
-            background: #0a0a0e;
-            padding: 12px 18px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid var(--gold);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            background: #0a0a0e; padding: 12px 18px;
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 2px solid var(--gold); position: sticky; top: 0; z-index: 100;
         }
         .logo { font-size: 18px; font-weight: bold; color: var(--gold); }
         .sub-logo { font-size: 10px; color: #aaa; }
         .nav-btns { display: flex; gap: 8px; }
         .btn-link, .admin-btn {
-            background: transparent;
-            border: 1px solid var(--gold);
-            color: var(--gold);
-            padding: 5px 10px;
-            font-size: 12px;
-            font-weight: bold;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
+            background: transparent; border: 1px solid var(--gold); color: var(--gold);
+            padding: 5px 10px; font-size: 12px; font-weight: bold; border-radius: 5px; cursor: pointer; text-decoration: none;
         }
         .admin-btn { background: var(--gold); color: #000; }
 
-        /* Category Scroll Tabs (Page style) */
         .category-nav {
-            display: flex;
-            gap: 8px;
-            padding: 12px 15px;
-            overflow-x: auto;
-            background: #0f1117;
-            position: sticky;
-            top: 57px;
-            z-index: 90;
+            display: flex; gap: 8px; padding: 12px 15px; overflow-x: auto;
+            background: #0f1117; position: sticky; top: 57px; z-index: 90;
             border-bottom: 1px solid rgba(233,185,77,0.2);
         }
         .cat-tab {
-            background: #1a1c24;
-            border: 1px solid rgba(233,185,77,0.3);
-            color: #ddd;
-            padding: 8px 14px;
-            border-radius: 20px;
-            white-space: nowrap;
-            font-size: 13px;
-            font-weight: bold;
-            cursor: pointer;
+            background: #1a1c24; border: 1px solid rgba(233,185,77,0.3); color: #ddd;
+            padding: 8px 14px; border-radius: 20px; white-space: nowrap; font-size: 13px; font-weight: bold; cursor: pointer;
         }
-        .cat-tab.active {
-            background: var(--gold);
-            color: #000;
-        }
+        .cat-tab.active { background: var(--gold); color: #000; }
 
         .container { max-width: 800px; margin: auto; padding: 15px; position: relative; z-index: 10; }
-        .sec-header { color: var(--gold); margin: 20px 0 10px 0; font-size: 18px; border-left: 4px solid var(--gold); padding-left: 8px; }
+        .sec-header { color: var(--gold); margin: 20px 0 10px 0; font-size: 17px; border-left: 4px solid var(--gold); padding-left: 8px; }
         
         .menu-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
         .item-card {
-            background: var(--card-bg);
-            border: 1px solid rgba(233,185,77,0.2);
-            border-radius: 10px;
-            padding: 14px 18px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            background: var(--card-bg); border: 1px solid rgba(233,185,77,0.2);
+            border-radius: 10px; padding: 14px 18px; display: flex; justify-content: space-between; align-items: center;
         }
         .item-name { font-size: 15px; font-weight: bold; }
         .item-price { color: var(--gold); font-size: 15px; font-weight: bold; margin-top: 3px; }
         .controls { display: flex; align-items: center; gap: 8px; }
         .action-btn { 
-            background: var(--gold); 
-            border: none; 
-            padding: 6px 14px; 
-            font-weight: bold; 
-            border-radius: 5px; 
-            cursor: pointer; 
-            color: #000;
+            background: var(--gold); border: none; padding: 6px 14px; 
+            font-weight: bold; border-radius: 5px; cursor: pointer; color: #000;
         }
         .qty-btn { width: 28px; height: 28px; border-radius: 50%; font-size: 15px; border: 1px solid var(--gold); background: #000; color: var(--gold); cursor: pointer; }
 
         .cart-bar {
-            position: fixed;
-            bottom: 0; left: 0; right: 0;
-            background: #0a0a0e;
-            border-top: 2px solid var(--gold);
-            padding: 12px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 99;
+            position: fixed; bottom: 0; left: 0; right: 0; background: #0a0a0e;
+            border-top: 2px solid var(--gold); padding: 12px 20px;
+            display: flex; justify-content: space-between; align-items: center; z-index: 99;
         }
         
         .modal {
-            position: fixed; inset: 0;
-            background: rgba(0,0,0,0.85);
-            display: none; justify-content: center; align-items: center;
-            z-index: 1000; padding: 15px;
+            position: fixed; inset: 0; background: rgba(0,0,0,0.85);
+            display: none; justify-content: center; align-items: center; z-index: 1000; padding: 15px;
         }
         .modal-content {
-            background: #14161f;
-            border: 2px solid var(--gold);
-            padding: 20px; border-radius: 10px;
-            width: 100%; max-width: 480px; max-height: 85vh; overflow-y: auto;
+            background: #14161f; border: 2px solid var(--gold); padding: 20px; border-radius: 10px;
+            width: 100%; max-width: 450px; max-height: 85vh; overflow-y: auto;
         }
         input, select {
-            width: 100%; padding: 10px; margin: 8px 0;
-            background: #090a0e; border: 1px solid var(--gold);
-            color: #fff; border-radius: 5px;
+            width: 100%; padding: 10px; margin: 8px 0; background: #090a0e; border: 1px solid var(--gold); color: #fff; border-radius: 5px;
         }
-
         @media print {
             body * { visibility: hidden; }
             #kot-print-area, #kot-print-area * { visibility: visible; }
@@ -176,8 +117,8 @@
         </div>
     </div>
 
-    <!-- Category Tabs (Page Style) -->
-    <div class="category-nav" id="cat-tabs">
+    <!-- Category Tabs -->
+    <div class="category-nav">
         <button class="cat-tab active" onclick="filterCategory('ALL', this)">ALL</button>
         <button class="cat-tab" onclick="filterCategory('ALFAHAM', this)">ALFAHAM</button>
         <button class="cat-tab" onclick="filterCategory('BEEF SPECIAL', this)">BEEF</button>
@@ -194,7 +135,7 @@
     <div class="cart-bar">
         <div>
             <div>Cart: <span id="cart-count" style="color:var(--gold); font-weight:bold;">0</span> items</div>
-            <div style="font-size:11px; color:#aaa;">Direct WhatsApp Order Enabled</div>
+            <div style="font-size:11px; color:#aaa;">Support: 8367873518</div>
         </div>
         <button class="action-btn" onclick="openCart()">View Cart</button>
     </div>
@@ -204,17 +145,16 @@
         <div class="modal-content">
             <h3 style="color:var(--gold);">Admin Dashboard</h3>
             <div id="admin-login-sec">
-                <p style="font-size:13px; color:#aaa; margin:5px 0;">Enter PIN (2222)</p>
-                <input type="password" id="admin-pin" placeholder="Enter PIN">
+                <input type="password" id="admin-pin" placeholder="Enter PIN (2222)">
                 <button class="action-btn" onclick="verifyAdmin()">Login</button>
                 <button class="action-btn" style="background:#555; color:#fff; margin-top:5px;" onclick="closeAdmin()">Cancel</button>
             </div>
             <div id="admin-panel-sec" style="display:none;">
-                <h4>Live Orders & KOT Print</h4>
+                <h4>Live Orders & KOT</h4>
                 <div id="live-orders-list"></div>
                 <hr style="border-color:rgba(233,185,77,0.3); margin:15px 0;">
-                <h4>Manage Item Stock & Prices</h4>
-                <div id="admin-stock-list" style="max-height: 200px; overflow-y: auto; margin-bottom: 10px;"></div>
+                <h4>Manage Stock</h4>
+                <div id="admin-stock-list" style="max-height:180px; overflow-y:auto; margin-bottom:10px;"></div>
                 <hr style="border-color:rgba(233,185,77,0.3); margin:15px 0;">
                 <h4>Add New Item</h4>
                 <select id="new-category">
@@ -238,7 +178,7 @@
     <!-- Cart Modal -->
     <div class="modal" id="cart-modal">
         <div class="modal-content">
-            <h3 style="color:var(--gold);">Your Order Checkout</h3>
+            <h3 style="color:var(--gold);">Your Order</h3>
             <div id="cart-items-list" style="margin: 10px 0;"></div>
             <input type="text" id="cust-name" placeholder="Your Name">
             <input type="text" id="cust-phone" placeholder="Phone Number">
@@ -248,26 +188,25 @@
         </div>
     </div>
 
-    <!-- Hidden KOT Print Area -->
     <div id="kot-print-area"></div>
 
     <script>
         const adminWhatsApp = "918367873518";
 
-        // Flying Emojis Background Animation
+        // Emojis
         const emojis = ['🍗', '🥩', '🍚', '🍞', '🍕', '🍔', '🥟'];
         const emojiContainer = document.getElementById('emoji-container');
-        for (let i = 0; i < 14; i++) {
+        for (let i = 0; i < 12; i++) {
             let el = document.createElement('div');
             el.className = 'emoji-item';
             el.innerText = emojis[Math.floor(Math.random() * emojis.length)];
             el.style.left = Math.random() * 100 + '%';
-            el.style.animationDelay = Math.random() * 10 + 's';
+            el.style.animationDelay = Math.random() * 8 + 's';
             el.style.animationDuration = (8 + Math.random() * 6) + 's';
             emojiContainer.appendChild(el);
         }
 
-        let defaultMenu = {
+        const defaultMenu = {
             "ALFAHAM": [
                 {name: "ALFAHAM NORMAL", price: 120, available: true},
                 {name: "ALFAHAM PERI PERI", price: 130, available: true},
@@ -356,13 +295,12 @@
             container.innerHTML = '';
             for (let category in menuData) {
                 if (currentFilter !== 'ALL' && currentFilter !== category) continue;
-                
-                let availableItems = menuData[category].filter(i => i.available !== false);
-                if (availableItems.length === 0 && currentFilter !== 'ALL') continue;
+                let activeItems = menuData[category].filter(i => i.available !== false);
+                if (activeItems.length === 0 && currentFilter !== 'ALL') continue;
 
                 let html = `<div class="sec-header">${category}</div><div class="menu-grid">`;
                 menuData[category].forEach((item) => {
-                    if (item.available === false) return; // Don't show out-of-stock items to customers
+                    if (item.available === false) return;
                     let qty = cart[item.name]?.qty || 0;
                     html += `
                         <div class="item-card">
@@ -382,7 +320,7 @@
                     `;
                 });
                 html += `</div>`;
-                if(availableItems.length > 0) container.innerHTML += html;
+                if(activeItems.length > 0) container.innerHTML += html;
             }
             let totalCount = Object.values(cart).reduce((sum, i) => sum + i.qty, 0);
             document.getElementById('cart-count').innerText = totalCount;
@@ -429,14 +367,33 @@
             }
 
             let order = {
-                id: Date.now(),
-                name: name,
-                phone: phone,
-                address: address,
-                items: {...cart},
-                total: grandTotal,
-                status: 'Pending'
+                id: Date.now(), name: name, phone: phone, address: address,
+                items: {...cart}, total: grandTotal, status: 'Pending'
             };
 
             orders.unshift(order);
-            localStorage.setItem('mbk_orde
+            localStorage.setItem('mbk_orders', JSON.stringify(orders));
+
+            let msg = `*NEW ORDER - MBK HOTEL*\n------------------\n*Customer:* ${name}\n*Phone:* ${phone}\n*Table/Room:* ${address}\n\n*Items:*\n${orderItemsStr}\n*Total:* ₹${grandTotal}`;
+            let waUrl = `https://wa.me/${adminWhatsApp}?text=${encodeURIComponent(msg)}`;
+            window.open(waUrl, '_blank');
+
+            alert('Order placed successfully!');
+            cart = {};
+            closeCart();
+            renderMenu();
+        }
+
+        function openAdminLogin() { document.getElementById('admin-modal').style.display = 'flex'; }
+        function closeAdmin() { 
+            document.getElementById('admin-modal').style.display = 'none'; 
+            document.getElementById('admin-pin').value = '';
+            document.getElementById('admin-login-sec').style.display = 'block';
+            document.getElementById('admin-panel-sec').style.display = 'none';
+        }
+
+        function verifyAdmin() {
+            let pin = document.getElementById('admin-pin').value;
+            if(pin === '2222') {
+                document.getElementById('admin-login-sec').style.display = 'none';
+     
